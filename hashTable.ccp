@@ -33,12 +33,12 @@ bool HashTable::isEmpty() {
 }
 
 int HashTable::hashFunction(int key) {
-	return key% hashGroups; //Key: 905. in return, this function will spit out 5.
+	return key % hashGroups; //Key: 905. in return, this function will spit out 5.
 }
 
 void HashTable::insertItem(int key string value){
 	int hashValue = hashFunction(key);
-	auto cell = table[hashValue];
+	auto& cell = table[hashValue];
 	auto bItr = begin(cell);
 	bool keyExists = false;
 	for(;bItr != end(cell); bItr++){
@@ -50,21 +50,21 @@ void HashTable::insertItem(int key string value){
 		}
 	}
 	if (!keyExists) {
-		cell.replace_back(key, value);
+		cell.emplace_back(key, value);
 	}
 	return;
 }
 
 void HashTable::removeItem(int key) {
 	int hashValue = hashFunction(key);
-	auto cell = table[hashValue];
+	auto& cell = table[hashValue];
 	auto bItr = begin(cell);
 	bool keyExists = false;
 	for(; bItr!=end(cell); bItr++) {
-		if (bItr ->first===key) {
+		if (bItr ->first==key) {
 			keyExists = true;
 			bItr = cell.erase(bItr);
-			cout << "[INFO] Item removed" << endl;
+			cout << "[INFO] Pai removed." << endl;
 			break;
 		}
 	}
@@ -81,7 +81,7 @@ void HashTable::printTable() {
 
 		auto bItr = table[i].begin();
 		for(;bItr != table[i].end(); bItr++){
-			cout << "[INFO] Key:" << bItr->first <<"Value:"<< bItr->second <<endl;
+			cout << "[INFO] Key: " << bItr->first << "Value: " << bItr->second << endl;
 		} 
 	}
 	return;
@@ -91,7 +91,7 @@ int main() {
 	HashTable HT;
 
 	if(HT.isEmpty()){
-		cout << "Correct asnwer. Good job." endl;
+		cout << "Correct asnwer. Good job." << endl;
 	} else {
 		cout << "Oh oh. We need to check out code!" << endl;
 	}
@@ -115,5 +115,6 @@ int main() {
 	}else {
 		cout << "Correct asnwer! Good job!" << endl;
 	}
+
 	return 0;
 }
