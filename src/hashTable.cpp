@@ -10,7 +10,7 @@ class HashTable {
 	private:
 		static const int hashGroups = 10;
 		list<pair<int,string>> table[hashGroups]; //List 1, index 0, Index 1...
-		
+
 	public:
 		bool isEmpty() const;
 		int hashFunction(int key);
@@ -21,7 +21,7 @@ class HashTable {
 
 };
 
-bool HashTable::isEmpty() {
+bool HashTable::isEmpty() const {
 	int sum{};
 	for (int i{}; i<hashGroups: i++){
 		sum+=table[i].size();
@@ -104,7 +104,7 @@ int main() {
 	HT.insertItem(23, "Felix");
 	HT.insertItem(723, "George");
 	HT.insertItem(723, "Bruce");
-	
+
 	HT.printTable();
 
 	HT.removeItem(43);
